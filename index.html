@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Good Morning ANJALI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    background:linear-gradient(135deg,#ff6b6b,#ff9a8b,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:bgMove 15s ease infinite;
+    position:relative;
+}
+
+/* Animated Background */
+
+@keyframes bgMove{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+/* Floating Hearts */
+
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:1;
+}
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    color:rgba(255,255,255,0.7);
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Main Card */
+
+.container{
+    position:relative;
+    z-index:10;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:850px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.3);
+    border-radius:35px;
+    padding:60px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 40px rgba(0,0,0,0.2);
+    animation:cardShow 1.5s ease;
+}
+
+@keyframes cardShow{
+    from{
+        transform:translateY(40px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+.small-text{
+    letter-spacing:4px;
+    font-size:14px;
+    margin-bottom:20px;
+    opacity:0.9;
+}
+
+h1{
+    font-size:70px;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+h1 span{
+    color:#fff6a9;
+    text-shadow:0 0 20px rgba(255,255,255,0.7);
+}
+
+.message{
+    font-size:20px;
+    line-height:1.9;
+    max-width:650px;
+    margin:auto;
+    margin-bottom:40px;
+    color:#fdfdfd;
+}
+
+.time-box{
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.15);
+    margin-bottom:35px;
+    font-size:18px;
+    font-weight:500;
+    backdrop-filter:blur(10px);
+}
+
+.btns{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    padding:16px 35px;
+    border-radius:50px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.btn-love{
+    background:white;
+    color:#ff4f81;
+}
+
+.btn-love:hover{
+    transform:translateY(-5px) scale(1.05);
+}
+
+.btn-surprise{
+    background:rgba(255,255,255,0.15);
+    color:white;
+    border:1px solid rgba(255,255,255,0.4);
+}
+
+.btn-surprise:hover{
+    background:white;
+    color:#ff4f81;
+    transform:translateY(-5px);
+}
+
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    width:90%;
+    max-width:500px;
+    background:white;
+    color:#222;
+    padding:40px;
+    border-radius:30px;
+    text-align:center;
+    z-index:100;
+    transition:0.4s;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
+
+.popup.active{
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+    color:#ff4f81;
+    margin-bottom:20px;
+    font-size:35px;
+}
+
+.popup p{
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.close-btn{
+    background:#ff4f81;
+    color:white;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    h1{
+        font-size:42px;
+    }
+
+    .message{
+        font-size:17px;
+    }
+
+    .card{
+        padding:40px 25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="small-text">
+            SPECIAL MORNING FOR ANJALI ✨
+        </div>
+
+        <h1>
+            Good Morning <br>
+            <span>ANJALI 💖</span>
+        </h1>
+
+        <div class="time-box" id="liveTime">
+            Loading Time...
+        </div>
+
+        <div class="message">
+            May your day on <b>22 May 2026</b> be filled with happiness,
+            smiles, success, peace, and beautiful moments.
+            Keep shining like the most beautiful star in the sky ✨
+        </div>
+
+        <div class="btns">
+            <button class="btn-love" onclick="showLove()">
+                Open Special Message 💌
+            </button>
+
+            <button class="btn-surprise" onclick="changeBackground()">
+                Surprise Effect ✨
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+    <h2>For ANJALI 💖</h2>
+
+    <p>
+        Every sunrise becomes more beautiful when your smile exists in this world.
+        Keep smiling, keep shining, and never stop being amazing ✨
+    </p>
+
+    <button class="close-btn" onclick="closePopup()">
+        Close
+    </button>
+
+</div>
+
+<script>
+
+/* LIVE TIME */
+
+function updateTime(){
+
+    const now = new Date();
+
+    const options = {
+        weekday:'long',
+        year:'numeric',
+        month:'long',
+        day:'numeric',
+        hour:'2-digit',
+        minute:'2-digit',
+        second:'2-digit'
+    };
+
+    document.getElementById("liveTime").innerHTML =
+    now.toLocaleDateString('en-US', options);
+
+}
+
+setInterval(updateTime,1000);
+updateTime();
+
+/* HEARTS */
+
+const heartsContainer = document.getElementById("hearts");
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("heart");
+
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+    Math.random() * 30 + 20 + "px";
+
+    heart.style.animationDuration =
+    Math.random() * 5 + 5 + "s";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },10000);
+}
+
+setInterval(createHeart,300);
+
+/* POPUP */
+
+function showLove(){
+    document.getElementById("popup")
+    .classList.add("active");
+}
+
+function closePopup(){
+    document.getElementById("popup")
+    .classList.remove("active");
+}
+
+/* BACKGROUND EFFECT */
+
+let backgrounds = [
+'linear-gradient(135deg,#ff6b6b,#ff9a8b,#fbc2eb,#a18cd1)',
+'linear-gradient(135deg,#ff758c,#ff7eb3,#fad0c4,#ffd1ff)',
+'linear-gradient(135deg,#667eea,#764ba2,#ff758c,#ff7eb3)',
+'linear-gradient(135deg,#ff9966,#ff5e62,#fbc2eb,#a18cd1)'
+];
+
+let current = 0;
+
+function changeBackground(){
+
+    current++;
+
+    if(current >= backgrounds.length){
+        current = 0;
+    }
+
+    document.body.style.background =
+    backgrounds[current];
+
+    document.body.style.backgroundSize =
+    "400% 400%";
+}
+
+</script>
+
+</body>
+</html>
